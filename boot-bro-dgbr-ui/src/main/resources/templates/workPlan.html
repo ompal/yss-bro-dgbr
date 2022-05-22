@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Monthly Work Plan</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+											<thead style="background-color: #36b9cc;color: white;">
+												<tr>
+													<th>Project</th> 
+													<th>work_type</th>													
+													<th>job_route_no</th>
+													<th>job_sr_no</th>
+													<th>awp_tgt_fmn_km</th>
+													<th>fy_year</th>
+													<th>april_work_projection</th>
+													<th>april_work_execution</th> 
+													
+													<th>may_work_projection</th> 
+													<th>may_work_execution</th>													
+													<th>june_work_projection</th>
+													<th>june_work_execution</th>
+													<th>july_work_projection</th>
+													<th>july_work_execution</th>
+													<th>august_work_projection</th>
+													<th>august_work_execution</th> 
+													
+													<th>sept_work_projection</th> 
+													<th>sept_work_execution</th>													
+													<th>oct_work_projection</th>
+													<th>oct_work_execution</th>
+													<th>nov_work_projection</th>
+													<th>nov_work_execution</th>
+													<th>dec_work_projection</th>
+													<th>dec_work_execution</th>
+													
+													<th>jan_work_projection</th> 
+													<th>jan_work_execution</th>													
+													<th>feb_work_projection</th>
+													<th>feb_work_execution</th>
+													<th>march_work_projection</th>
+													<th>march_work_execution</th>
+													<th>upto_march_projection</th>
+													<th>upto_march_execution</th> 
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="obj : ${workPlans}" style="text-align: center;">  
+														<td th:text="${obj.projName}"></td> 
+														<td th:text="${obj.work_type}"></td>													
+														<td th:text="${obj.job_route_no}"></td>
+														<td th:text="${obj.job_sr_no}"></td>
+														<td th:text="${obj.awp_tgt_fmn_km}"></td>
+														<td th:text="${obj.fy_year}"></td>
+														<td th:text="${obj.april_work_projection}"></td>
+														<td th:text="${obj.april_work_execution}"></td> 
+														
+														<td th:text="${obj.may_work_projection}"></td>													
+														<td th:text="${obj.may_work_execution}"></td>
+														<td th:text="${obj.june_work_projection}"></td>
+														<td th:text="${obj.june_work_execution}"></td>
+														<td th:text="${obj.july_work_projection}"></td>
+														<td th:text="${obj.july_work_execution}"></td>
+														<td th:text="${obj.august_work_projection}"></td> 
+														
+														<td th:text="${obj.august_work_execution}"></td>													
+														<td th:text="${obj.sept_work_projection}"></td>
+														<td th:text="${obj.sept_work_execution}"></td>
+														<td th:text="${obj.oct_work_projection}"></td>
+														<td th:text="${obj.oct_work_execution}"></td>
+														<td th:text="${obj.nov_work_projection}"></td>
+														<td th:text="${obj.nov_work_execution}"></td> 
+														
+														<td th:text="${obj.dec_work_projection}"></td>													
+														<td th:text="${obj.dec_work_execution}"></td>
+														<td th:text="${obj.jan_work_projection}"></td>
+														<td th:text="${obj.jan_work_execution}"></td>
+														<td th:text="${obj.feb_work_projection}"></td>
+														<td th:text="${obj.feb_work_execution}"></td>
+														<td th:text="${obj.march_work_projection}"></td>
+														
+														<td th:text="${obj.march_work_execution}"></td>													
+														<td th:text="${obj.upto_march_projection}"></td>
+														<td th:text="${obj.upto_march_execution}"></td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

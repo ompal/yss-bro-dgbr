@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+					<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">PROJECTS LIST</h6>
+									<div class="text-right" style="margin-top: -20px; margin-right: 30px;">
+										ADGs: 
+										<a class="btn btn-outline-warning" th:href="@{/project?adg=EAST}">EAST</a>
+										<a class="btn btn-outline-warning" th:href="@{/project?adg=NW}">NW</a> 
+										&nbsp; 
+										Project:  
+									    <a class="btn btn-outline-warning" th:href="@{/project?projectType=site}">Site</a>
+									    <a class="btn btn-outline-warning" th:href="@{/project?projectType=office}">Official</a>
+										 
+									</div>
+									
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>ADGs</th>
+													<th>Project Name</th>
+													<th>Sub Project Name</th>
+													<th>Sub Sub Project Name</th>
+													<th>Project Description</th>
+													<th>Project Type</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="proj : ${projects}">
+													<td th:text="${proj.adg}"></td>
+													<td th:text="${proj.projName}"></td>
+													<td th:text="${proj.subProjName}"></td>
+													<td th:text="${proj.subSubProjName}"></td>
+													<td th:text="${proj.projDesc}"></td>
+													<td th:text="${proj.projType}"></td>
+													<td style="text-align: center;">
+														<a th:href="@{/project/{projId}/edit(projId=${proj.id})}"><i class="fas fa-edit fa-sm" style="color: primary;"></i></a> 
+															<a th:href="@{/project/{projId}/delete(projId=${proj.id})}"><i class="fas fa-trash fa-sm" style="color: red;"></i></a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-8">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">ADD NEW PROJECT</h6>
+								</div>
+								<div class="card-body">
+									<form th:action="@{/project}" th:object="${project}"
+										class="was-validated" method="post">
+										<p class="alert alert-danger"
+											th:if="${#fields.hasGlobalErrors()}"
+											th:each="error : ${#fields.errors('global')}"
+											th:text="${error}">Validation error</p>
+										<p th:if="${param.success}" class="alert alert-info">Project
+											successfully added!</p>
+										<div class="form-row">
+											<div class="form-group col-md-12">
+												<label for="adg" class="control-label">ADGs:</label> 
+												<input id="agd" class="form-control" th:field="*{adg}" required="required" />
+												<div class="invalid-feedback"> Please provide a valid ADG name.</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12">
+												<label for="projName" class="control-label">Project Name:</label> 
+												<input id="projName" class="form-control" th:field="*{projName}" required="required" />
+												<div class="invalid-feedback"> Please provide a valid project name.</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12" >
+												<label for="subProjName" class="control-label">Sub Project Name:</label> 
+												<input id="subProjName" class="form-control" th:field="*{subProjName}" /> 
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12">
+												<label for="subSubProjName" class="control-label">Sub Sub Project Name:</label> 
+												<input id="subSubProjName" class="form-control" th:field="*{subSubProjName}" /> 
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12">
+												<label for="projDesc" class="control-label">Project Description:</label> 
+												<input id="projDesc" class="form-control" th:field="*{projDesc}" /> 
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12">
+												<label for="projType" class="control-label">Project Type:</label> 
+												<input id="projType" class="form-control" th:field="*{projType}" /> 
+											</div>
+										</div>
+										<div class="form-group col-md-12">
+											<button type="submit" class="btn btn-success">Submit</button>											
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

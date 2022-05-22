@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Nominal Roll TF Cdrs</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>pers_no</th> 
+													<th>name</th>													
+													<th>rank</th>
+													<th>sector</th>
+													<th>unit</th>
+													<th>tors</th>
+													<th>due_for_to</th>
+													<th>remark</th> 
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="obj : ${nominalRollTfCdrs}" style="text-align: center;">  
+														<td th:text="${obj.pers_no}"></td> 
+														<td th:text="${obj.name}"></td>													
+														<td th:text="${obj.rank}"></td>
+														<td th:text="${obj.sector}"></td>
+														<td th:text="${obj.unit}"></td>
+														<td th:text="${obj.tors}"></td>
+														<td th:text="${obj.due_for_to}"></td>
+														<td th:text="${obj.remark}"></td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

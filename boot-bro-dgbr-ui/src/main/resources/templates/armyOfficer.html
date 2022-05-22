@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Nominal Roll Army Officer</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+											<thead style="background-color: #36b9cc;color: white;">
+												<tr>
+													<th>Project</th> 
+													<th>cadre</th>													
+													<th>per_no</th>
+													<th>rank</th>
+													<th>name_officer</th>
+													<th>unit</th>
+													<th>rcc</th>
+													<th>tf</th> 
+													
+													<th>area_ci</th> 
+													<th style="width: 150px;">date_tors</th>													
+													<th>addl_qfn</th>
+													<th>dor</th> 
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="obj : ${nominalRollArmyOfficers}" style="text-align: center;">  
+														<td th:text="${obj.projName}"></td> 
+														<td th:text="${obj.cadre}"></td>													
+														<td th:text="${obj.per_no}"></td>
+														<td th:text="${obj.rank}"></td>
+														<td th:text="${obj.name_officer}"></td>
+														<td th:text="${obj.unit}"></td>
+														<td th:text="${obj.rcc}"></td>
+														<td th:text="${obj.tf}"></td> 														
+														<td th:text="${obj.area_ci}"></td>													
+														<td th:text="${#dates.format(obj.date_tors, 'yyyy-MM-dd')}" ></td>
+														<td th:text="${obj.addl_qfn}"></td>
+														<td th:text="${obj.dor}"></td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

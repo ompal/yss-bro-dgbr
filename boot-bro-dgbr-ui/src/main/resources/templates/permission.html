@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-8">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">PERMISSIONS LIST</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Permission Name</th>
+													<th>Permission Description</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="per : ${permissions}">
+													<td th:text="${per.name}"></td>
+													<td th:text="${per.perDesc}"></td>
+													<td style="text-align: center;"><a
+														th:href="@{/permission}"><i class="fas fa-edit fa-sm" style="color: primary;"></i></a> 
+														<a th:href="@{/permission}"><i class="fas fa-trash fa-sm" style="color: red;"></i></a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">ADD NEW PERMISSION</h6>
+								</div>
+								<div class="card-body">
+									<form th:action="@{/permission}" th:object="${permission}"
+										class="was-validated" method="post">
+										<p class="alert alert-danger"
+											th:if="${#fields.hasGlobalErrors()}"
+											th:each="error : ${#fields.errors('global')}"
+											th:text="${error}">Validation error</p>
+										<p th:if="${param.success}" class="alert alert-info">Permission
+											successfully added!</p>
+										<div class="form-row">
+											<div class="form-group col-md-12"> 
+												<label for="name" class="control-label">Permission
+													Name:</label> <input id="name" class="form-control"
+													th:field="*{name}" required="required" /> 
+												<p class="invalid-feedback" th:each="error: ${#fields.errors('name')}"
+													th:text="${error}">Enter permission name</p>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12">
+												<label for="perDesc" class="control-label">Permission
+													Description:</label> <input id="perDesc" class="form-control"
+													th:field="*{perDesc}" required="required" />
+												<p class="invalid-feedback"
+													th:each="error : ${#fields.errors('perDesc')}"
+													th:text="${error}">Enter description</p>
+											</div>
+										</div>
+										<div class="form-group col-md-12">
+											<button type="submit" class="btn btn-success">Submit</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

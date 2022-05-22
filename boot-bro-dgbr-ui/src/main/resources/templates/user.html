@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">						
+						
+						<div class="col-6">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">USERS LIST</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>First Name</th>
+													<th>Last Name</th> 
+													<th>Username</th>
+													<th>Action</th> 
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="user : ${users}">
+													<td th:text="${user.firstName}"></td>
+													<td th:text="${user.lastName}"></td> 
+													<td th:text="${user.username}"></td> 
+													<td style="text-align: center;">
+														<a th:href="@{/user/{userId}/edit(userId=${user.id})}"><i class="fas fa-edit fa-sm" style="color: primary;"></i></a> 
+															<a th:href="@{/user/{userId}/delete(userId=${user.id})}"><i class="fas fa-trash fa-sm" style="color: red;"></i></a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">ADD NEW USER</h6>
+								</div>
+								<div class="card-body">
+									<form th:action="@{/user}" th:object="${user}"
+										class="was-validated" method="post">
+										<p class="alert alert-danger"
+											th:if="${#fields.hasGlobalErrors()}"
+											th:each="error : ${#fields.errors('global')}"
+											th:text="${error}">Validation error</p>
+										<p th:if="${param.success}" class="alert alert-info">User
+											successfully added!
+										</p>
+										<p th:if="${param.deleted}" class="alert alert-info">User
+											successfully deleted!
+										</p>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="firstName" class="control-label">First name</label> 
+												<input id="firstName" class="form-control" th:field="*{firstName}" required="required" />
+												<div class="invalid-feedback">Please enter first name!</div>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="lastName" class="control-label">Last name</label> 
+												<input id="lastName" class="form-control" th:field="*{lastName}" required="required" />
+												<div class="invalid-feedback">Please enter last name!</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6" >
+												<label for="email" class="control-label">E-mail</label> 
+												<input id="email" class="form-control" th:field="*{email}" type="email" required="required" />
+												<div class="invalid-feedback">Please enter correct email id!</div>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="username" class="control-label">Username</label>
+												<input id="username" class="form-control" th:field="*{username}" required="required" />
+												<div class="invalid-feedback">Please enter username!</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="password" class="control-label">Password</label>
+												<input id="password" class="form-control" type="password" required="required" th:field="*{password}" />
+												<div class="invalid-feedback">Please enter password!</div>
+											</div> 
+											<div class="form-group col-md-6">
+												<label for="confirmPassword" class="control-label">Confirm
+													password</label> <input id="confirmPassword" class="form-control"
+													type="password" th:field="*{confirmPassword}"
+													required="required" />
+												<div class="invalid-feedback">Please enter same password!</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12">
+												<label for="roles" class="control-label">Roles</label> 
+												<select id="roles" class="form-control" th:field="*{roles}" multiple="multiple" required="required">
+													<option th:each="role : ${roles}" th:value="${role.id}"
+														th:text="${role.name}"></option>
+												</select>
+												<div class="invalid-feedback">Please select at least one role!</div>
+											</div>
+										</div> 
+										<div class="form-group col-md-12">
+											<button type="submit" class="btn btn-success">Register</button> 
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">USER DETAILS</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable1"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>First Name</th>
+													<th>Last Name</th>
+													<th>Email</th>
+													<th>Username</th>
+													<th>Roles</th> 
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="user : ${users}">
+													<td th:text="${user.firstName}"></td>
+													<td th:text="${user.lastName}"></td>
+													<td th:text="${user.email}"></td>
+													<td th:text="${user.username}"></td>
+													<td>
+														<li th:each="role : ${user.roles}"><span
+															th:text="${role.name}"></span></li>
+													</td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+
+				</div>
+				<!-- End of Main Content -->
+
+				<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

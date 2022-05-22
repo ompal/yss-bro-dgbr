@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">					
+					<div class="row">
+						<div class="col-8">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Total Outstanding Posting Order</h6>
+									<div class="text-right" style="margin-top: -20px; margin-right: 30px;">
+										<div class="btn-group">
+										  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Sector
+										  </button>
+										  <div class="dropdown-menu">
+										    <a class="dropdown-item" th:href="@{/posting?adg=EAST}">Eastern</a>
+										    <a class="dropdown-item" th:href="@{/posting?adg=NW}">Western</a> 
+										  </div>
+										</div>&nbsp;
+										<a href="/posting" class="btn btn-outline-warning">All</a> &nbsp;
+									</div>
+									
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Sector</th>
+													<th>Total Posting Dues</th>
+													<th>Dues UP to Date</th>  
+													<th>FY Year</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="t : ${total}">
+													<td th:text="${t.adg}"></td>		
+													<td th:text="${t.duesPosting}" style="text-align: center;"></td>
+													<td th:text="${#dates.format(t.duesUpToDate, 'yyyy-MM-dd')}"></td> 
+													<td th:text="${t.fyDate}"></td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Ministry Wise Summary of Outstanding Posting Order</h6>
+									<div class="text-right" style="margin-top: -20px; margin-right: 30px;">
+										<div class="btn-group">
+										  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Sector
+										  </button>
+										  <div class="dropdown-menu">
+										    <a class="dropdown-item" th:href="@{/posting?adg=EAST}">Eastern</a>
+										    <a class="dropdown-item" th:href="@{/posting?adg=NW}">Western</a> 
+										  </div>
+										</div>
+										&nbsp;
+											<a href="/posting" class="btn btn-outline-warning">All</a> &nbsp;
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable1"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Sector</th>
+													<th>Project</th>
+													<th>Dues Upto Date</th> 
+													<th>Posting Dues</th> 
+													<th>Sub Project</th>
+													<th>Sub Project Category</th> 
+													<th>FY Year</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="post : ${postings}">
+													<td th:text="${post.adg}"></td>	
+													<td th:text="${post.projName}"></td>
+													<td th:text="${#dates.format(post.duesUpToDate, 'dd-MMM-yyyy')}"></td>  
+													<td th:text="${post.duesPosting}" style="text-align: center;"></td> 
+													<td th:text="${post.subProjName}"></td>
+													<td th:text="${post.subSubProjName}"></td>
+													<td th:text="${post.fyDate}"></td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+
+				</div>
+				<!-- End of Main Content -->
+
+				<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

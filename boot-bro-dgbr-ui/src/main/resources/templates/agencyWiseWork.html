@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Agency Wise Work</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>project</th> 
+													<th>agency_name</th>													
+													<th>sanction_status</th> 
+													<th>name_road</th> 
+													<th>name_work</th>
+																										
+													<th>loc_from_km_to_km</th> 
+													<th>job_no_route</th> 
+													<th>job_no_sr</th>													
+													<th>aa_raa_ae_amount</th> 
+													
+													<th>ts_fmn_km_ci9</th> 
+													<th>ts_surf_km_ci9</th>													
+													<th>ts_pmt_wks_inr</th> 
+													<th>ts_maj_br_in_mtr</th> 
+													
+													<th>ts_tunnel_in_mtf</th>													
+													<th>ab_fmn_km_ci9</th> 
+													<th>ab_surf_km_ci9</th> 
+													<th>ab_pmt_wks_inr</th>
+																										
+													<th>ab_maj_br_in_mtr</th>													
+													<th>ab_tunnel_in_mtf</th>													
+													<th>ab_total_cost_wks</th> 
+													<th>remark</th> 
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="obj : ${agencyWiseWorks}" style="text-align: center;"> 
+												 
+														<td th:text="${obj.projName}"></td> 
+														<td th:text="${obj.agency_name}"></td>
+														<td th:text="${obj.sanction_status}"></td>													
+														<td th:text="${obj.name_road}"></td>
+														
+														<td th:text="${obj.name_work}"></td> 
+														<td th:text="${obj.loc_from_km_to_km}"></td>													
+														<td th:text="${obj.job_no_route}"></td> 
+														<td th:text="${obj.job_no_sr}"></td> 
+														<td th:text="${obj.aa_raa_ae_amount}"></td>	
+																										
+														<td th:text="${obj.ts_fmn_km_ci9}"></td>
+														<td th:text="${obj.ts_surf_km_ci9}"></td> 
+														<td th:text="${obj.ts_pmt_wks_inr}"></td>													
+														<td th:text="${obj.ts_maj_br_in_mtr}"></td> 
+														
+														<td th:text="${obj.ts_tunnel_in_mtf}"></td> 
+														<td th:text="${obj.ab_fmn_km_ci9}"></td>													
+														<td th:text="${obj.ab_surf_km_ci9}"></td>
+														<td th:text="${obj.ab_pmt_wks_inr}"></td> 
+														
+														<td th:text="${obj.ab_maj_br_in_mtr}"></td>													
+														<td th:text="${obj.ab_tunnel_in_mtf}"></td> 
+														<td th:text="${obj.ab_total_cost_wks}"></td> 
+														<td th:text="${obj.remark}"></td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

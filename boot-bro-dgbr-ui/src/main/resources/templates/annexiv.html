@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Annex IV </h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Project</th> 
+													<th>RoadName</th>													
+													<th>WorkName</th>
+													<th>JobNoSr</th>
+													<th>Remark</th>
+													<th>BeYearSrNo</th>
+													<th>BrdpProgNo</th>
+													<th>LTROwpNo</th> 
+													 
+													<th>SanctionedStatus</th>													
+													<th>LocFromKmToKm</th>
+													<th>WorkType</th>
+													<th>SpecRoadExisting</th>
+													<th>SpecRoadProposed</th>
+													<th>Package</th>
+													<th>TF</th>
+													
+													<th>Unit</th>													
+													<th>DateOfSanction</th>
+													<th>AARaaAeAmount</th>
+													<th>TsFmnKmCI-9</th>
+													<th>TsSurfKmCI-9</th>
+													<th>TsPmtWksInr</th>
+													<th>TsMajBrInMtr</th>
+													
+													<th>TsTunnelInMtf</th>													
+													<th>AbFmnKmCI-9</th>
+													<th>AbSurfKmInr</th>
+													<th>AbPmtWksInr</th>
+													<th>AbMajBrInMtr</th>
+													<th>AbTunnelInMtf</th>
+													<th>AbTotalCostWks</th>
+													
+													<th>AwpFmnKmCi9</th>													
+													<th>AwpSurfKmCi</th>
+													<th>AwpPmtWks</th>
+													<th>AwpMajBrInMtr</th>
+													<th>AwpTunnelInMts</th>
+													<th>AwpTotalCostWks</th>
+													<th>MajorHeads</th>
+													
+													<th>ModeExecution</th>													
+													<th>Ministry</th>
+													<th>ADGs</th>
+													<th>CrFmnKmCi9</th>
+													<th>CrSurfKmCi9</th>
+													<th>CrMajBrInMtr</th>
+													<th>CrTunnelInMtr</th>
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="obj : ${annexivs}" style="text-align: center;">  
+														<td th:text="${obj.projName}"></td>
+														 
+														<td th:text="${obj.nameRoad}"></td>													
+														<td th:text="${obj.nameWork}"></td>
+														<td th:text="${obj.jobNoRoute}"></td>
+														<td th:text="${obj.jobNoSr}"></td>
+														<td th:text="${obj.remark}"></td>
+														<td th:text="${obj.beYearSrNo}"></td>
+														<td th:text="${obj.brdpProgNo}"></td>
+														
+														<td th:text="${obj.ltrowpNo}"></td>													
+														<td th:text="${obj.sanctionedStatus}"></td>
+														<td th:text="${obj.locFromKmToKm}"></td>
+														<td th:text="${obj.typeWork}"></td>
+														<td th:text="${obj.specRoadExisting}"></td>
+														<td th:text="${obj.specRoadProposed}"></td>
+														<td th:text="${obj.pkg}"></td>
+														
+														<td th:text="${obj.tf}"></td>													
+														<td th:text="${obj.unit}"></td>
+														<td th:text="${obj.dateOfSanction}"></td>
+														<td th:text="${obj.aaRaaAeAmount}"></td>
+														<td th:text="${obj.tsFmnKmCi9}"></td>
+														<td th:text="${obj.tsSurfKmCi9}"></td>
+														<td th:text="${obj.tsPmtWksInr}"></td>
+														
+														<td th:text="${obj.tsMajBrInMtr}"></td>													
+														<td th:text="${obj.tsTunnelInMtf}"></td>
+														<td th:text="${obj.abFmnKmCi9}"></td>
+														<td th:text="${obj.abSurfKmCi9}"></td>
+														<td th:text="${obj.abPmtWksInr}"></td>
+														<td th:text="${obj.abMajBrInMtr}"></td>
+														<td th:text="${obj.abTunnelInMtf}"></td>
+														
+														<td th:text="${obj.abTotalCostWks}"></td>													
+														<td th:text="${obj.awpFmnKmCi9}"></td>
+														<td th:text="${obj.awpSurfKmCi}"></td>
+														<td th:text="${obj.awpPmtWks}"></td>
+														<td th:text="${obj.awpMajBrInMtr}"></td>
+														<td th:text="${obj.awpTunnelInMts}"></td>
+														<td th:text="${obj.awpTotalCostWks}"></td>
+														
+														<td th:text="${obj.majorHeads}"></td>													
+														<td th:text="${obj.modeExecution}"></td>
+														<td th:text="${obj.ministry}"></td>
+														<td th:text="${obj.adgs}"></td>
+														<td th:text="${obj.crFmnKmCi9}"></td>
+														<td th:text="${obj.crSurfKmCi9}"></td>
+														<td th:text="${obj.crMajBrInMtr}"></td>
+														<td th:text="${obj.crTunnelInMtr}"></td>
+														 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>

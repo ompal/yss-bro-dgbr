@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">DEPARTMENTS LIST</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Department</th>													
+													<th>Sub Department</th>
+													<th>Sub Department Category</th>
+													<th>Description</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="dept : ${departments}">
+													<td th:text="${dept.deptName}"></td>													
+													<td th:text="${dept.subDeptName}"></td>
+													<td th:text="${dept.subDeptCategory}"></td>
+													<td th:text="${dept.deptDesc}"></td>
+													<td style="text-align: center;">
+														<a th:href="@{/department/{deptId}/edit(deptId=${dept.id})}"><i class="fas fa-edit fa-sm" style="color: primary;"></i></a> 
+															<a th:href="@{/department/{deptId}/delete(deptId=${dept.id})}"><i class="fas fa-trash fa-sm" style="color: red;"></i></a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-8">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">ADD NEW DEPARTMENT</h6>
+								</div>
+								<div class="card-body">
+									<form th:action="@{/department}" th:object="${department}"
+										class="was-validated" method="post">
+										<p class="alert alert-danger"
+											th:if="${#fields.hasGlobalErrors()}"
+											th:each="error : ${#fields.errors('global')}"
+											th:text="${error}">Validation error</p>
+										<p th:if="${param.success}" class="alert alert-info">Department
+											successfully added!</p>
+										<div class="form-row">
+											<div class="form-group col-md-12"
+												th:classappend="${#fields.hasErrors('deptName')}? 'has-error':''">
+												<label for="deptName" class="control-label">Department
+													Name:</label> <input id="deptName" class="form-control"
+													th:field="*{deptName}" required="required" />
+												<p class="error" th:each="error: ${#fields.errors('deptName')}"
+													th:text="${error}">Enter name</p>
+											</div>
+										</div>										
+										<div class="form-row">
+											<div class="form-group col-md-12"
+												th:classappend="${#fields.hasErrors('subDeptName')}? 'has-error':''">
+												<label for="perDesc" class="control-label">Sub Department
+													Name:</label> <input id="subDeptName" class="form-control"
+													th:field="*{subDeptName}" />
+												<p class="invalid-feedback"
+													th:each="error : ${#fields.errors('subDeptName')}"
+													th:text="${error}">Enter sub department</p>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12"
+												th:classappend="${#fields.hasErrors('subDeptCategory')}? 'has-error':''">
+												<label for="subDeptCategory" class="control-label">Sub Department
+													Category:</label> <input id="subDeptCategory" class="form-control"
+													th:field="*{subDeptCategory}" />
+												<p class="invalid-feedback"
+													th:each="error : ${#fields.errors('subDeptCategory')}"
+													th:text="${error}">Enter sub department category</p>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-12"
+												th:classappend="${#fields.hasErrors('deptDesc')}? 'has-error':''">
+												<label for="deptDesc" class="control-label">Department
+													Description:</label> <input id="deptDesc" class="form-control"
+													th:field="*{deptDesc}" />
+												<p class="invalid-feedback"
+													th:each="error : ${#fields.errors('deptDesc')}"
+													th:text="${error}">Enter description</p>
+											</div>
+										</div>
+										<div class="form-group col-md-12">
+											<button type="submit" class="btn btn-success">Submit</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</div>
+			<!-- End of Main Content -->
+
+			<!-- Footer -->
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+
+</html>

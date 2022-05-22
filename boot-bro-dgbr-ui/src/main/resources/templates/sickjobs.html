@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: headfiles" ></head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="fragments :: sidebar"> </div>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<div th:replace="fragments :: navbar"> </div>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<div class="row">
+						
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">DETAILS OF BALANCE SICK JOBS </h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Total Jobs</th>													
+													<th>Closed</th>
+													<th>% Closed</th>
+													<th>Balance</th>
+													<th style="text-align: center;">Vintage Of Balance<br/> 
+													(Sick Jobs)
+													</th>
+													<th>Project</th>
+													<th>Sub Project</th>
+													<th>ADGs</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="job : ${sickjobs}" th:if="${job.perClosed<30}" class="trred">  
+														<td th:text="${job.totalJobs}"></td>													
+														<td th:text="${job.closed}"></td>
+														<td th:text="${job.perClosed}"></td>
+														<td th:text="${job.balance}"></td>
+														<td th:text="${job.vintageOfBalance}"></td>
+														<td th:text="${job.projName}"></td> 
+														<td th:text="${job.subProjName}"></td> 
+														<td th:text="${job.adg}"></td>  
+												<tr th:each="job : ${sickjobs}" th:if="${job.perClosed>50}" class="trgreen">  
+														<td th:text="${job.totalJobs}"></td>													
+														<td th:text="${job.closed}"></td>
+														<td th:text="${job.perClosed}"></td>
+														<td th:text="${job.balance}"></td>
+														<td th:text="${job.vintageOfBalance}" style="width: 150px;"></td>
+														<td th:text="${job.projName}"></td> 
+														<td th:text="${job.subProjName}"></td> 
+														<td th:text="${job.adg}"></td>  
+												<tr th:each="job : ${sickjobs}" th:if="${job.perClosed>30 && job.perClosed<50}">  
+														<td th:text="${job.totalJobs}"></td>													
+														<td th:text="${job.closed}"></td>
+														<td th:text="${job.perClosed}"></td>
+														<td th:text="${job.balance}"></td>
+														<td th:text="${job.vintageOfBalance}"></td>
+														<td th:text="${job.projName}"></td> 
+														<td th:text="${job.subProjName}"></td> 
+														<td th:text="${job.adg}"></td>  
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<!-- DataTales Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">DETAILS OF BALANCE SICK JOBS (PROJECT WISE) </h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable1"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Vintage Of Balance</th> 											
+													<th>Settled Till Date</th>
+													<th>Balance</th>
+													<th>Project</th>  
+													<th>Period From</th>
+													<th>Period To</th> 
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="job : ${sickjobsProjectWise} " >  
+														<td th:text="${job.vintageOfBalance}"></td>													
+														<td th:text="${job.settledTillDate}"></td> 
+														<td th:text="${job.balance}"></td> 
+														<td th:text="${job.projName}"></td> 
+														<td th:text="${#calendars.format(job.periodFrom, 'dd MMM yyyy')}" ></td> 
+														<td th:text="${#calendars.format(job.periodTo, 'dd MMM yyyy')}"></td> 
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div> 
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<div th:replace="fragments :: footer"> </div>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper --> 
+	
+	<!-- Logout Modal-->
+	<div th:replace="fragments :: logout"> </div> 
+	 
+</body>
+</html>
